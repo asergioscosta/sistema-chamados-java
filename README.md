@@ -1,4 +1,4 @@
-# 🛠 Sistema de Chamados - Backend
+# 🛠 Sistema de Chamados
 
 [![Status do Projeto](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellowgreen.svg)](https://github.com/asergioscosta/sistema-chamados-java)
 
