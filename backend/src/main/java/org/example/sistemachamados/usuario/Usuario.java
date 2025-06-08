@@ -1,10 +1,13 @@
 package org.example.sistemachamados.usuario;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.sistemachamados.enums.StatusChamado;
+import org.example.sistemachamados.enums.TipoUsuario;
 import org.example.sistemachamados.enums.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,6 +27,9 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
+    private String nomeUsuario;
+
     private String login;
     private String password;
     private boolean admin;
@@ -31,6 +37,11 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserRole userRole;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TipoUsuario tipoUsuario;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

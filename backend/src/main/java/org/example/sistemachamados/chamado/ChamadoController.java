@@ -2,6 +2,7 @@ package org.example.sistemachamados.chamado;
 
 import lombok.RequiredArgsConstructor;
 import org.example.sistemachamados.exception.RegraNegocioException;
+import org.example.sistemachamados.usuario.Usuario;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -96,6 +97,17 @@ public class ChamadoController {
         chamado.setDataAbertura(dto.getDataAbertura());
         chamado.setDataAgendamento(dto.getDataAgendamento());
         chamado.setStatusChamado(dto.getStatusChamado());
+
+        if(dto.getCliente() != null) {
+            Usuario cliente = new Usuario();
+            cliente.setId(dto.getCliente().getId());
+            chamado.setCliente(cliente);
+        }
+        if(dto.getTecnico() != null) {
+            Usuario tecnico = new Usuario();
+            tecnico.setId(dto.getTecnico().getId());
+            chamado.setTecnico(tecnico);
+        }
         return chamado;
     }
 }

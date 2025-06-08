@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.sistemachamados.enums.StatusChamado;
+import org.example.sistemachamados.usuario.UsuarioDTO;
 import org.modelmapper.ModelMapper;
 
 @Data
@@ -17,6 +18,8 @@ public class ChamadoDTO {
     private String dataAbertura;
     private String dataAgendamento;
     private StatusChamado statusChamado;
+    private UsuarioDTO cliente;
+    private UsuarioDTO tecnico;
 
     public static ChamadoDTO create(Chamado chamado) {
         ModelMapper modelMapper = new ModelMapper();
@@ -27,6 +30,15 @@ public class ChamadoDTO {
         dto.setDataAbertura(chamado.getDataAbertura());
         dto.setDataAgendamento(chamado.getDataAgendamento());
         dto.setStatusChamado(chamado.getStatusChamado());
+
+        if(chamado.getCliente() != null) {
+            dto.setCliente(UsuarioDTO.create(chamado.getCliente()));
+        }
+
+        if(chamado.getTecnico() != null) {
+            dto.setTecnico(UsuarioDTO.create(chamado.getTecnico()));
+        }
+
         return dto;
     }
 }
