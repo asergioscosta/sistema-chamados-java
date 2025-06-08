@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.example.sistemachamados.enums.StatusChamado;
+import org.example.sistemachamados.usuario.Usuario;
 
 @Entity
 @Data
@@ -34,4 +35,9 @@ public class Chamado {
     @Column(nullable = false)
     private StatusChamado statusChamado;
 
+    @ManyToOne
+    private Usuario cliente;
+
+    @ManyToOne
+    private Usuario tecnico;
 }
